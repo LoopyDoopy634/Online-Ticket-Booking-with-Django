@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookings for {{ event.name }}</title>
+</head>
+<body>
+    <h1>Bookings for {{ event.name }}</h1>
+    <ul>
+        {% for ticket in tickets %}
+        <li>
+            Name: {{ ticket.name }}, Email: {{ ticket.email }}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'event_list' %}">Back to Events</a>
+</body>
+</html>
