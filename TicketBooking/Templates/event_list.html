@@ -2,17 +2,61 @@
 <html>
 <head>
     <title>Event List</title>
+    <style>
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Events</h1>
-    <ul>
-        {% for event in events %}
-        <li>
-            {{ event.name }} - {{ event.date }} - {{ event.location }}
-            <a href="{% url 'book_ticket' event.id %}">Book Ticket</a> |
-            <a href="{% url 'event_bookings' event.id %}">View Bookings</a>
-        </li>
-        {% endfor %}
-    </ul>
+    <marquee behavior="scroll"><h1>Events</h1></marquee>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.name }}</td>
+                <td>{{ event.date }}</td>
+                <td>{{ event.location }}</td>
+                <td>
+                    <a href="{% url 'book_ticket' event.id %}" class="btn">Book Ticket</a>
+                    <a href="{% url 'event_bookings' event.id %}" class="btn">View Bookings</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
